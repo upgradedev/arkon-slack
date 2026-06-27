@@ -2,7 +2,12 @@
  * Block Kit helpers — format ARKON Engine output for Slack.
  */
 
-import type { Block, KnownBlock } from '@slack/bolt'
+import type { Block, KnownBlock } from '@slack/types'
+
+interface ToolSummary {
+  name: string
+  description?: string
+}
 
 export function loadingBlocks(action: string): (KnownBlock | Block)[] {
   return [
@@ -80,7 +85,35 @@ export function helpBlocks(): (KnownBlock | Block)[] {
           '`/arkon release-notes <sprint>` — Release notes\n' +
           '`/arkon tech-debt [repo]` — Technical debt analysis\n' +
           '`/arkon postmortem <incident-id>` — Blameless postmortem\n' +
-          '`/arkon perf-test <service> [dev|qa|prod]` — k6 performance test plan',
+          '`/arkon perf-test <service> [dev|qa|prod]` — k6 performance test plan\n' +
+          '`/arkon tools` — Discover live MCP tools\n\n' +
+          'You can also mention `@ARKON` in a channel or DM the app with the same commands.',
+      },
+    },
+  ]
+}
+
+export function toolsBlocks(tools: ToolSummary[]): (KnownBlock | Block)[] {
+  const visibleTools = tools.slice(0, 20)
+  const body = visibleTools.length
+    ? visibleTools
+      .map((tool) => `• \`${tool.name}\`${tool.description ? ` — ${tool.description}` : ''}`)
+      .join('\n')
+    : '_The MCP server returned no tools._'
+
+  return [
+    {
+      type: 'header',
+      text: { type: 'plain_text', text: ':hammer_and_wrench: ARKON MCP Tools' },
+    },
+    { type: 'divider' },
+    {
+      type: 'section',
+      text: {
+        type: 'mrkdwn',
+        text: tools.length > visibleTools.length
+          ? `${body}\n\n_Showing first ${visibleTools.length} of ${tools.length} tools._`
+          : body,
       },
     },
   ]
