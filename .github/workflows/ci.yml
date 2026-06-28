@@ -29,3 +29,6 @@ jobs:
 
       - name: Build, test, and audit
         run: npm run ci
+
+      - name: Build container image
+        run: docker build -t arkon-slack:ci .
