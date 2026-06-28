@@ -7,10 +7,12 @@ only.
 ## Ready in this repo
 
 - Public repo: `https://github.com/upgradedev/arkon-slack`.
-- Latest evidence commit: `b814eef Document Slack container evidence run`.
+- Confirmed evidence commits include:
+  - `bad20a8 Update Slack evidence readiness`.
+  - `b814eef Document Slack container evidence run`.
 - GitHub evidence CI is enabled and green, including `npm ci`, TypeScript build,
-  Jest, production dependency audit, and Docker image build. Green example run:
-  `28312077113`.
+  Jest, production dependency audit, and Docker image build. Green runs include:
+  `28312737485` and `28312077113`.
 - Bolt for JavaScript app with `/arkon`, App Home, app mentions, and direct
   messages.
 - Seven DevOps-oriented intents mapped to MCP `tools/call` across slash,
