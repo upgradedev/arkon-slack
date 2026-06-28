@@ -6,6 +6,9 @@ only.
 
 ## Ready in this repo
 
+- Public repo: `https://github.com/upgradedev/arkon-slack`.
+- Latest evidence commit: `04260c7 Add Slack evidence CI`.
+- GitHub evidence CI is enabled and green: run `28311852570`.
 - Bolt for JavaScript app with `/arkon`, App Home, app mentions, and direct
   messages.
 - Seven DevOps-oriented intents mapped to MCP `tools/call` across slash,
